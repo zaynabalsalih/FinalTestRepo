@@ -1,13 +1,20 @@
+
 pipeline {
     agent any
+
     stages {
-        stage('Selenium Test') {
+        stage('Test') {
             steps {
-                seleniumIDE(
-                    testFiles: 'C:/Users/Zaynab/Desktop/test/test code/SelenTest.java',
-                    browsers: 'chrome'
-                )
+                dir('C:/Users/Zaynab/Desktop/test/test code/SelenTest.java'){ 
+                    bat 'java -m Junit -v'
+                }
+            }
+        }
+        stage('Clean Workspace'){
+            steps {
+                cleanWs()
             }
         }
     }
 }
+
